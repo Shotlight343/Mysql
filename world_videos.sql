@@ -27,7 +27,10 @@ CREATE TABLE `videos` (
   `Video Name` varchar(100) NOT NULL,
   `No. of Views` int NOT NULL,
   `No. of Likes` int NOT NULL,
-  PRIMARY KEY (`VideoID`)
+  `idCreators` int DEFAULT NULL,
+  PRIMARY KEY (`VideoID`),
+  KEY `fk_videos_creators` (`idCreators`),
+  CONSTRAINT `fk_videos_creators` FOREIGN KEY (`idCreators`) REFERENCES `creators` (`idCreators`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -37,7 +40,7 @@ CREATE TABLE `videos` (
 
 LOCK TABLES `videos` WRITE;
 /*!40000 ALTER TABLE `videos` DISABLE KEYS */;
-INSERT INTO `videos` VALUES (1,'How to create new Database and Table in MySQL WorkBench',1646533,16000),(2,'IShowSpeed Situation Is Sad',139413,3700),(3,'When a FNaF GOONER game takes itself SERIOUS',286186,9600),(4,'I Truman Show\'d My Friend in TF2',1642931,109000),(5,'Minecraft’s Problems Aren’t Just the New Features',829964,42000);
+INSERT INTO `videos` VALUES (1,'How to create new Database and Table in MySQL WorkBench',1646533,16000,NULL),(2,'IShowSpeed Situation Is Sad',139413,3700,NULL),(3,'When a FNaF GOONER game takes itself SERIOUS',286186,9600,NULL),(4,'I Truman Show\'d My Friend in TF2',1642931,109000,NULL),(5,'Minecraft’s Problems Aren’t Just the New Features',829964,42000,NULL);
 /*!40000 ALTER TABLE `videos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-10-06 11:02:03
+-- Dump completed on 2026-10-06 11:11:04
